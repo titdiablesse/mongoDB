@@ -62,14 +62,17 @@ const projectStud = await db.collection('Etudiants').find({}).project({nom: 1, p
 
 // retourner tous les etudiants avec tous les champs existants
 const allStud = await db.collection('Etudiants').find({}).toArray();
-console.log(allStud);
+// console.log(allStud);
+
+
+
 
 // Exercice faire un affichage de tous le étudiants selon le modèle 
 // 1 . Nom Prenom Mail 
 // ---------------------
-// 2 . Nom Prenom Mail 
-
+// 2 . Nom Prenom Mail
 // faire passer la requête pour récupérer tous les étudiants dans une fonction 
+await getAllStudents(db);
 
 }catch (e) {
 
@@ -78,7 +81,7 @@ console.log(allStud);
     }
     finally {
 
-        // Fermer la connection à la BDD 
+        // Fermer la connexion à la BDD 
         await client.close();
 
     }
@@ -86,3 +89,13 @@ console.log(allStud);
 }
 
 main()
+
+async function getAllStudents(db){
+    const resultQuestion1 = await db.collection('Etudiants').find({}).toArray();
+
+resultQuestion1.forEach((res, i) => {
+    console.log(`${i + 1}. ${res.nom} ${res.prenom} ${res.email}`);
+    console.log('---------------------');
+});
+
+}

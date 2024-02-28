@@ -33,7 +33,7 @@ async function main(){
     }
     finally {
 
-        // Fermer la connection à la BDD 
+        // Fermer la connexion à la BDD 
         await client.close();
 
     }
